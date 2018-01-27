@@ -1,0 +1,46 @@
+<html>
+<head>
+  <script>
+
+    const weapons = ['rock','paper','scissors'];
+
+    function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    };
+
+    function makeStringFriendly(word) {
+      return word.toLowerCase();
+    };
+
+    let computerPlay = function() {
+      return weapons[getRandomInt(0,3)];
+    };
+
+    let playRound = function(playerSelection, computerSelection) {
+      playerSelection = makeStringFriendly(playerSelection);
+      if (playerSelection === computerSelection) {
+        return "It's a tie!"
+      } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+        return 'You Win! Rock beats scissors';
+      } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+        return 'You Lose! Scissors beats paper.';
+      } else if (playerSelection === 'rock' && computerSelection === 'paper') {
+        return 'You Lose! Paper beats rock!';
+      } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+        return 'You Win! Scissors beats paper!';
+      } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+        return 'You Win! Paper beats rock.';
+      } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+        return 'You Lose! Rock beats scissors.';
+      }
+
+    };
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

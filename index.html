@@ -1,8 +1,9 @@
 <html>
 <head>
   <script>
-
     const weapons = ['rock','paper','scissors'];
+
+    let score = 0;
 
     function getRandomInt(min, max) {
       min = Math.ceil(min);
@@ -14,6 +15,7 @@
       return word.toLowerCase();
     };
 
+
     let computerPlay = function() {
       return weapons[getRandomInt(0,3)];
     };
@@ -21,23 +23,42 @@
     let playRound = function(playerSelection, computerSelection) {
       playerSelection = makeStringFriendly(playerSelection);
       if (playerSelection === computerSelection) {
-        return "It's a tie!"
+        console.log("It's a tie!");
       } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        return 'You Win! Rock beats scissors';
+        score++;
+        console.log('You Win! Rock beats scissors');
       } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-        return 'You Lose! Scissors beats paper.';
+      console.log('You Lose! Scissors beats paper.');
       } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        return 'You Lose! Paper beats rock!';
+        console.log('You Lose! Paper beats rock!');
       } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        return 'You Win! Scissors beats paper!';
+        score++;
+        console.log('You Win! Scissors beats paper!');
       } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        return 'You Win! Paper beats rock.';
+        score++;
+        console.log('You Win! Paper beats rock.');
       } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-        return 'You Lose! Rock beats scissors.';
+        console.log('You Lose! Rock beats scissors.');
       }
-
     };
 
+    function game() {
+      console.log("Let's Play Rock, Paper, Scissors.");
+      for (i = 0; i < 5; i++) {
+
+        console.log('Round %s! Choose your weapon:', i+1);
+        playRound(prompt(), computerPlay());
+
+      }
+      console.log("The score is: " + score);
+      if (score > 2) {
+        console.log("You win the game!");
+      } else {
+        console.log("Better luck next time kid ;)");
+      }
+    };
+
+    game();
   </script>
 </head>
 <body>

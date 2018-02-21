@@ -1,5 +1,16 @@
 <html>
 <head>
+
+</head>
+<body>
+
+<button id='rock'>Rock</button>
+<button id='paper'>Paper</button>
+<button id='scissors'>Scissors</button>
+
+
+
+
   <script>
     const weapons = ['rock','paper','scissors'];
 
@@ -42,26 +53,40 @@
       }
     };
 
-    function game() {
-      console.log("Let's Play Rock, Paper, Scissors.");
-      for (i = 0; i < 5; i++) {
+    // function game() {
+    //   console.log("Let's Play Rock, Paper, Scissors.");
+    //
+    //   console.log('Round %s! Choose your weapon:', i+1);
+    //   playRound(prompt(), computerPlay());
+    //
+    //   console.log("The score is: " + score);
+    //   if (score > 2) {
+    //     console.log("You win the game!");
+    //   } else {
+    //     console.log("Better luck next time kid ;)");
+    //   }
+    // };
 
-        console.log('Round %s! Choose your weapon:', i+1);
-        playRound(prompt(), computerPlay());
+    // game();
 
-      }
-      console.log("The score is: " + score);
-      if (score > 2) {
-        console.log("You win the game!");
-      } else {
-        console.log("Better luck next time kid ;)");
-      }
-    };
 
-    game();
+//adding UI elements
+    const rock = document.getElementById('rock');
+    const paper = document.getElementById('paper');
+    const scissors = document.getElementById('scissors');
+
+    rock.addEventListener('click', (e) => {
+      playRound('rock', computerPlay());
+    });
+
+    paper.addEventListener('click', (e) => {
+      playRound('paper', computerPlay());
+    });
+
+    scissors.addEventListener('click', (e) => {
+      playRound('scissors', computerPlay());
+    });
+
   </script>
-</head>
-<body>
-
 </body>
 </html>

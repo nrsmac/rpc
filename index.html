@@ -1,6 +1,19 @@
 <html>
 <head>
+  <style>
+    body {
+      text-align: center;
+      font-family: monospace;
+    }
 
+    .left {float:left;}
+    .right {float: right;}
+
+    div {
+      width: 50%;
+      margin:auto;
+    }
+  </style>
 </head>
 <body>
 
@@ -8,13 +21,25 @@
 <button id='paper'>Paper</button>
 <button id='scissors'>Scissors</button>
 
+<div>
+  <h3>Score:</h3>
+  <h2 class="left" >Computer</h2>
+  <br />
+  <h1 class="left" id='computerScore'>0</h1>
 
+  <h2 class="right" >User</h2>
+  <br />
+  <h1 class="right" id='userScore'>0</h1>
+
+  <h2 id='results'></h2>
+</div>
 
 
   <script>
     const weapons = ['rock','paper','scissors'];
 
-    let score = 0;
+    let userScore = 0;
+    let computerScore = 0;
 
     function getRandomInt(min, max) {
       min = Math.ceil(min);
@@ -34,40 +59,53 @@
     let playRound = function(playerSelection, computerSelection) {
       playerSelection = makeStringFriendly(playerSelection);
       if (playerSelection === computerSelection) {
-        console.log("It's a tie!");
+        announceResult("It's a tie!");
       } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        score++;
-        console.log('You Win! Rock beats scissors');
+
+        userScore++;
+        announceResult('You Win! Rock beats scissors');
       } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-      console.log('You Lose! Scissors beats paper.');
+      announceResult('You Lose! Scissors beats paper.');
+      computerScore++;
       } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        console.log('You Lose! Paper beats rock!');
+        announceResult('You Lose! Paper beats rock!');
+        computerScore++;
       } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        score++;
-        console.log('You Win! Scissors beats paper!');
+        userScore++;
+        announceResult('You Win! Scissors beats paper!');
       } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        score++;
-        console.log('You Win! Paper beats rock.');
+        userScore++;
+        announceResult('You Win! Paper beats rock.');
       } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-        console.log('You Lose! Rock beats scissors.');
+        announceResult('You Lose! Rock beats scissors.');
+        computerScore++;
       }
+
+
     };
 
-    // function game() {
-    //   console.log("Let's Play Rock, Paper, Scissors.");
-    //
-    //   console.log('Round %s! Choose your weapon:', i+1);
-    //   playRound(prompt(), computerPlay());
-    //
-    //   console.log("The score is: " + score);
-    //   if (score > 2) {
-    //     console.log("You win the game!");
-    //   } else {
-    //     console.log("Better luck next time kid ;)");
-    //   }
-    // };
+function checkScore() {
+      if (userScore < 5) {
+        return;
+      } else if (userScore === 5) {
+        alert("you win!");
+      }
+};
+
+const computerScoreDisplay = document.getElementById('computerScore');
+const userScoreDisplay = document.getElementById('userScore');
+
+function updateScore() {
+  userScoreDisplay.innerHTML = userScore;
+  computerScoreDisplay.innerHTML = computerScore;
+}
 
     // game();
+
+const resultDisplay = document.getElementById('results');
+  function announceResult(string) {
+    resultDisplay.innerHTML = string;
+  }
 
 
 //adding UI elements
@@ -77,14 +115,23 @@
 
     rock.addEventListener('click', (e) => {
       playRound('rock', computerPlay());
+      updateScore();
+      checkScore();
+
     });
 
     paper.addEventListener('click', (e) => {
       playRound('paper', computerPlay());
+      updateScore();
+      checkScore();
+
     });
 
     scissors.addEventListener('click', (e) => {
       playRound('scissors', computerPlay());
+      updateScore();
+      checkScore();
+
     });
 
   </script>
